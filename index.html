@@ -2,20 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Make it Snow.</title>
+    <title>Title</title>
+    <style>
+        #app{
+            width: 560px;
+            margin: 0 auto;
+        }
+        #myCanvas {
+
+        border: 1px solid grey;
+    }</style>
+    <script src="vue.js"></script>
 </head>
 <body>
-<div class='container'>
-    <canvas id='canvas'></canvas>
-    <section class='section'>
-        <div class='text'>
-            <p>Make it Snow.</p>
-        </div>
-    </section>
+<div id="app">
+    <h1 style="text-align: center">画板</h1>
+    <canvas id="myCanvas" width="560" height="500" @mousedown="beginDrawing" @mousemove="keepDrawing" @mouseup="stopDrawing" />
 </div>
-<script type='text/javascript' src="index.js"></script>
+<script>new Vue({
+    el: '#app',
+    data: {
+        x: 0,
+        y: 0,
+        isDrawing: false,
+        canvas: null,
+    },
+    methods: {
+        drawLine(x1, y1, x2, y2) {
+            let ctx = this.canvas;
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 1;
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+            ctx.closePath();
+        },
+        beginDrawing(e) {
+            this.x = e.offsetX;
+            this.y = e.offsetY;
+            this.isDrawing = true;
+        },
+        keepDrawing(e) {
+            if (this.isDrawing === true) {
+                this.drawLine(this.x, this.y, e.offsetX, e.offsetY);
+                this.x = e.offsetX;
+                this.y = e.offsetY;
+            }
+        },
+        stopDrawing(e) {
+            if (this.isDrawing === true) {
+                this.drawLine(this.x, this.y, e.offsetX, e.offsetY);
+                this.x = 0;
+                this.y = 0;
+                this.isDrawing = false;
+            }
+        }
+    },
+    mounted() {
+        var c = document.getElementById("myCanvas");
+        this.canvas = c.getContext('2d');
+    }
+});
+</script>
 </body>
 </html>
