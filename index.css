@@ -4,9 +4,25 @@
     box-sizing: border-box;
 }
 body{
+    background-image: url("123.jpg");
     text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+#car{
+    margin-left: -50px;
+    margin-top: 230px;
+}
+#girl{
+    margin-left: 1100px;
+    margin-top: 303px;
+}
+#hua{
+    margin-left: 680px;
+    margin-top: -709px;
+    display: none;
 
+}
 #right-wheel,#left-wheel{
     animation: wheel 1s ease infinite ;
     transform-origin: center;
@@ -21,6 +37,10 @@ body{
     animation: hat 1s ease-in-out infinite alternate;
     transform-origin: top;
     transform-box:fill-box;
+}
+#all{
+    width: 400px;
+    height: 400px;
 }
 @keyframes wheel {
     from{
