@@ -6,9 +6,9 @@ let hua=document.getElementById('hua');
 
 document.onkeydown=function (e) {
     switch (e.which) {
-        case 40:man.style.top=parseInt(man.style.top)+10+"px";
+        case 40:man.style.top=parseInt(man.style.top)+30+"px";
         break;
-        case 38:man.style.top=parseInt(man.style.top)-10+"px";
+        case 38:man.style.top=parseInt(man.style.top)-30+"px";
         break;
         case 37:man.style.left=parseInt(man.style.left)-10+"px";
             break;
